@@ -1,7 +1,8 @@
 {
     "conventionalCommits.scopes": [
         "Theme",
-        "Auth"
+        "Auth",
+        "Register/Upload server image "
     ],
     "WillLuke.nextjs.addTypesOnSave": true,
     "WillLuke.nextjs.hasPrompted": true

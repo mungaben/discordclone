@@ -3,6 +3,7 @@ import initialProfile from "@/lib/initial-profile";
 import React from "react";
 
 import { redirect } from "next/navigation";
+import InitialModal from "@/components/Modals/InitialModal";
 // create schemas for channels/memebes/profile&& server. !user in clerk craete user else rediresct to current user ......check if user is in server any by id redirect  to server
 
 const SetUppage = async () => {
@@ -23,7 +24,7 @@ const SetUppage = async () => {
   if (server) {
     return redirect(`/servers/${server.id}`);
   }
-  return <div>data</div>;
+  return <InitialModal/>;
 };
 
 export default SetUppage;
