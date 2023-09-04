@@ -7,7 +7,7 @@ import React from 'react'
 
 const Authlayout =({children}:{children:React.ReactNode})=> {
   return (
-    <div className=' bg-slate-500 h-full'>
+    <div className=' h-full flex justify-center items-center'>
       {children}
     </div>
   )
