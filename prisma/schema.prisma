@@ -9,3 +9,102 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// profile model
+
+model Profile {
+  id     String @id @default(uuid())
+  userId String @unique
+
+  name     String?
+  email    String?  @db.Text
+  imageUrl String?  @db.Text
+
+
+
+  servers  Server[]
+
+  members Member[]
+
+  channels  Channel[]
+
+
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// modal Server
+
+model Server {
+  id      String   @id @default(uuid())
+  name    String
+  members Member[]
+ 
+
+  imageUrl   String @db.Text
+  inviteCode String @db.Text
+
+  Profile   Profile @relation(fields: [ProfileId], references: [id], onDelete: Cascade)
+  ProfileId String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Channel   Channel[]
+
+  @@index([ProfileId])
+}
+
+// enum role
+
+enum MemberRole {
+  ADMIN
+  MODERATOR
+  GUEST
+}
+
+// model Member
+
+model Member {
+  id   String     @id @default(uuid())
+  role MemberRole @default(GUEST)
+
+  Profile   Profile @relation(fields: [ProfileId], references: [id], onDelete: Cascade)
+  ProfileId String
+  Server    Server  @relation(fields: [ServerId], references: [id], onDelete: Cascade)
+  ServerId  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ProfileId])
+  @@index([ServerId])
+}
+
+// enum channeltype
+
+enum ChannelType {
+  TEXT
+  VOICE
+  VIDEO
+}
+
+// model Channel
+
+model Channel {
+  id   String      @id @default(uuid())
+  name String
+  type ChannelType @default(TEXT)
+
+  profile   Profile @relation(fields: [ProfileId], references: [id], onDelete: Cascade)
+  ProfileId String
+
+  Server   Server @relation(fields: [ServerId], references: [id], onDelete: Cascade)
+  ServerId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ServerId])
+  @@index([ProfileId])
+}

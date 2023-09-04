@@ -1,5 +1,8 @@
 {
     "conventionalCommits.scopes": [
-        "Theme"
-    ]
+        "Theme",
+        "Auth"
+    ],
+    "WillLuke.nextjs.addTypesOnSave": true,
+    "WillLuke.nextjs.hasPrompted": true
 }
