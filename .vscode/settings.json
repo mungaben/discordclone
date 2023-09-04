@@ -2,7 +2,8 @@
     "conventionalCommits.scopes": [
         "Theme",
         "Auth",
-        "Register/Upload server image "
+        "Register/Upload server image ",
+        "post -create server-member-chennel in db "
     ],
     "WillLuke.nextjs.addTypesOnSave": true,
     "WillLuke.nextjs.hasPrompted": true

@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import axios from "axios";
 
 import {
   Dialog,
@@ -26,6 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import FileUpload from "../file-upload";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -38,6 +40,8 @@ const formSchema = z.object({
 
 const InitialModal = () => {
   const [open, setOpen] = useState(false);
+
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,7 +57,15 @@ const InitialModal = () => {
   // onsubmit
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    console.log("data ", data);
+    try {
+      await axios.post("/api/server", data);
+      form.reset();
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   useEffect(() => {
@@ -88,12 +100,10 @@ const InitialModal = () => {
                     <FormItem className=" uppercase text-xs font-bold to-zinc-500 dark:text-secondary/70">
                       <FormLabel>Server Image Url</FormLabel>
                       <FormControl>
-                        <FileUpload 
-                        endpoint="serverImage"
-                        value={field.value}
-                        onChange={field.onChange}
-                        
-                        
+                        <FileUpload
+                          endpoint="serverImage"
+                          value={field.value}
+                          onChange={field.onChange}
                         />
                       </FormControl>
                       <FormMessage />
