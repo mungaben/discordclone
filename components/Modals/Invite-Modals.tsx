@@ -21,8 +21,8 @@ const InviteModal = () => {
   const { isOpen, Onclose, type, open, data } = usemodal();
 
   const isModalOPen = isOpen && type === "invite";
-  const [copied, setcopied] = useState(false)
-  const [isLOading, setisLOading] = useState(false)
+  const [copied, setcopied] = useState(false);
+  const [isLOading, setisLOading] = useState(false);
 
   const { server } = data || {};
   const origin = UseOrigin();
@@ -30,29 +30,25 @@ const InviteModal = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(InviteUrl);
-    setcopied(true)
+    setcopied(true);
     setTimeout(() => {
-      setcopied(false)
-    }   
-    , 2000);
+      setcopied(false);
+    }, 2000);
   };
 
-  const OnNew=async()=>{
+  const OnNew = async () => {
     try {
-      setisLOading(true)
+      setisLOading(true);
 
-      const res=await axios.patch(`/api/server/${server?.id}`)
+      const res = await axios.patch(`/api/server/${server?.id}`);
 
-      open("invite",res.data)
+      open("invite", res.data);
     } catch (error) {
       console.log(error);
-      
-      
-    }finally{
-      setisLOading(false)
+    } finally {
+      setisLOading(false);
     }
-  }
-
+  };
 
   return (
     <Dialog open={isModalOPen} onOpenChange={Onclose}>
@@ -74,15 +70,16 @@ const InviteModal = () => {
               value={InviteUrl}
             />
             <Button size="icon" onClick={copyToClipboard} disabled={isLOading}>
-              {
-                copied ? <Check className=" h-4 w-4"/> : <Copy className=" h-4 w-4" />
-              }
-              
+              {copied ? (
+                <Check className=" h-4 w-4" />
+              ) : (
+                <Copy className=" h-4 w-4" />
+              )}
             </Button>
           </div>
           <Button
-          disabled={isLOading}
-          onClick={OnNew}
+            disabled={isLOading}
+            onClick={OnNew}
             variant="link"
             size={"sm"}
             className=" mt-4 text-zinc-500 text-xs"

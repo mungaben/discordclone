@@ -13,6 +13,8 @@ const SetUppage = async () => {
   if (!profile) {
     return redirectToSignIn();
   }
+  console.log(profile.id);
+  
 
   const server = await db.server.findFirst({
     where: {
@@ -26,10 +28,12 @@ const SetUppage = async () => {
       members: true, // Include the members of each server in the result
     },
   });
+  console.log("server is",server);
+  
 
   if (server) {
     // Redirect to the server if found
-    console.log(server.id);
+    console.log("server is",server.id);
     // /Servers/56
 
     return redirect(`Servers/${server.id}`);

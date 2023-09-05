@@ -42,11 +42,11 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        onClick={() => open("invite", { server })}
+       
         className=" w-56  text-xs font-medium text-black dark:text-neutral-400 space-y-[2px] "
       >
         {isModerator && (
-          <DropdownMenuItem className=" text-indigo-600 dark:text-indigo-400 px-3 cursor-pointer text-sm py-2 ">
+          <DropdownMenuItem   onClick={() => open("invite", { server })} className=" text-indigo-600 dark:text-indigo-400 px-3 cursor-pointer text-sm py-2 ">
             Invite People
             <UserPlus className=" h-4 w-4 ml-auto" />
           </DropdownMenuItem>
