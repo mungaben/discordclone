@@ -30,7 +30,7 @@ import { use, useEffect } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: "server anme required",
+    message: "server same required",
   }),
   imageUrl: z.string().url({
     message: "invalid url",
@@ -55,13 +55,7 @@ const EditServerModal = () => {
       imageUrl: "",
     },
   });
-  useEffect(() => {
-    if(server){
-        form.setValue("name",server.name)
-        form.setValue("imageUrl",server.imageUrl)
-    }
-   
-  },[server,form]);
+
 
   // loading state
 
@@ -72,7 +66,7 @@ const EditServerModal = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log("data ", data);
     try {
-      await axios.patch(`/api/Servers/Editserver/${server?.id}`, data);
+      await axios.patch(`api/server/${server?.id}/Editserver`, data);
       form.reset();
       router.refresh();
       Onclose();
@@ -85,6 +79,13 @@ const EditServerModal = () => {
     form.reset();
     Onclose();
   };
+  useEffect(() => {
+    if(server){
+        form.setValue("name",server.name)
+        form.setValue("imageUrl",server.imageUrl)
+    }
+   
+  },[server,form]);
 
   return (
     <Dialog open={isModalOPen} onOpenChange={handleCloseModal}>
