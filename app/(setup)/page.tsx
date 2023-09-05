@@ -5,10 +5,14 @@ import React from "react";
 import { redirect } from "next/navigation";
 import InitialModal from "@/components/Modals/InitialModal";
 import Errorpage from "./error";
+import { redirectToSignIn } from "@clerk/nextjs";
 
 const SetUppage = async () => {
   // try {
   const profile = await initialProfile();
+  if (!profile) {
+    return redirectToSignIn();
+  }
 
   const server = await db.server.findFirst({
     where: {

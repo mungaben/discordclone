@@ -4,7 +4,8 @@
         "Auth",
         "Register/Upload server image ",
         "post -create server-member-chennel in db ",
-        "navigation"
+        "navigation",
+        "channels"
     ],
     "WillLuke.nextjs.addTypesOnSave": true,
     "WillLuke.nextjs.hasPrompted": true

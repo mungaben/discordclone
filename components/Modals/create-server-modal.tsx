@@ -41,6 +41,9 @@ const CreateServerModal = () => {
 
   const isModalOPen = isOpen && type === "createServer";
 
+  console.log("create server modal", isModalOPen);
+  
+
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),

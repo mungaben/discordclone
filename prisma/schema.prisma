@@ -43,7 +43,7 @@ model Server {
  
 
   imageUrl   String @db.Text
-  inviteCode String @db.Text
+  inviteCode String @unique
 
   Profile   Profile @relation(fields: [ProfileId], references: [id], onDelete: Cascade)
   ProfileId String
