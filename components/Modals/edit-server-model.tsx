@@ -66,7 +66,7 @@ const EditServerModal = () => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log("data ", data);
     try {
-      await axios.patch(`api/server/${server?.id}/Editserver`, data);
+      await axios.patch(`/api/server/${server?.id}/editserver`, data);
       form.reset();
       router.refresh();
       Onclose();
