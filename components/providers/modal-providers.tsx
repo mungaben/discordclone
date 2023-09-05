@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import CreateServerModal from "../Modals/create-server-modal";
 import InitialModal from "../Modals/InitialModal";
 import InviteModal from "../Modals/Invite-Modals";
+import EditServerModal from "../Modals/edit-server-model";
 
 const ModalProvider = () => {
   const [isopen, setisOpen] = useState(false);
@@ -20,6 +21,7 @@ const ModalProvider = () => {
     <div>
       <CreateServerModal />
       <InviteModal/>
+      <EditServerModal/>
     </div>
   );
 };
