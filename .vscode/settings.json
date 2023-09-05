@@ -3,7 +3,8 @@
         "Theme",
         "Auth",
         "Register/Upload server image ",
-        "post -create server-member-chennel in db "
+        "post -create server-member-chennel in db ",
+        "navigation"
     ],
     "WillLuke.nextjs.addTypesOnSave": true,
     "WillLuke.nextjs.hasPrompted": true

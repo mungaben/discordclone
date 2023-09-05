@@ -4,27 +4,41 @@ import React from "react";
 
 import { redirect } from "next/navigation";
 import InitialModal from "@/components/Modals/InitialModal";
-// create schemas for channels/memebes/profile&& server. !user in clerk craete user else rediresct to current user ......check if user is in server any by id redirect  to server
+import Errorpage from "./error";
 
 const SetUppage = async () => {
+  // try {
   const profile = await initialProfile();
-  // get profle server
 
   const server = await db.server.findFirst({
     where: {
       members: {
         some: {
-          id: profile.id,
+          ProfileId: profile.id,
         },
       },
     },
+    include: {
+      members: true, // Include the members of each server in the result
+    },
   });
 
-  // if server redirect to serverid
   if (server) {
-    return redirect(`/servers/${server.id}`);
+    // Redirect to the server if found
+    console.log(server.id);
+    // /Servers/56
+
+    return redirect(`Servers/${server.id}`);
   }
-  return <InitialModal/>;
+
+  return <InitialModal />;
+  // } catch (error) {
+  //   return (
+  //     <div>
+  //       <Errorpage />
+  //     </div>
+  //   );
+  // }
 };
 
 export default SetUppage;

@@ -53,6 +53,7 @@ model Server {
   Channel   Channel[]
 
   @@index([ProfileId])
+  
 }
 
 // enum role
