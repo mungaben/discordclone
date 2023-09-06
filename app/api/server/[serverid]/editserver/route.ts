@@ -39,7 +39,7 @@ export async function PATCH(
     });
 
     return NextResponse.json(
-      { message: "Server updated", server },
+      { server },
       { status: 200 }
     );
   } catch (error) {

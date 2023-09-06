@@ -13,6 +13,9 @@ const Serverslayout = async ({
   params: { serverid: string };
 }) => {
   // get server with profile id
+
+  console.log("PARAMS IN SERVER LAYOUT", params);
+  
   const profile = await currentProfile();
   if (!profile) {
     return redirectToSignIn();
@@ -27,6 +30,9 @@ const Serverslayout = async ({
       },
     },
   });
+
+  console.log("SERVER IN SERVER LAYOUT", servers);
+  
   if (!servers) {
     return redirect("/");
   }

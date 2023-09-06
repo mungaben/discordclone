@@ -1,13 +1,12 @@
 import { db } from "@/lib/db";
 import initialProfile from "@/lib/initial-profile";
-import React from "react";
 
-import { redirect } from "next/navigation";
 import InitialModal from "@/components/Modals/InitialModal";
-import Errorpage from "./error";
 import { redirectToSignIn } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const SetUppage = async () => {
+ 
   // try {
   const profile = await initialProfile();
   if (!profile) {
@@ -35,7 +34,8 @@ const SetUppage = async () => {
     // Redirect to the server if found
     console.log("server is",server.id);
     // /Servers/56
-
+ 
+    
     return redirect(`Servers/${server.id}`);
   }
 
