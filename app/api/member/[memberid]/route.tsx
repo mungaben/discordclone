@@ -74,3 +74,72 @@ export async function PATCH(
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
+
+
+// delete
+
+export async function DELETE(request: Request, {params}: { params:{memberid: string}  }){
+
+    try {
+
+        const memberid = params.memberid;
+
+        console.log("memberid", memberid);
+        
+        const { searchParams } = new URL(request.url);
+        const serverid = searchParams.get("serverId");
+    
+        console.log("serverid", serverid, "memberid", memberid);
+    
+        const Profile = await currentProfile();
+        if (!Profile) {
+          return new NextResponse("Unauthorized", { status: 401 });
+        }
+    
+        if (!serverid) {
+          return new NextResponse("Bad Request", { status: 400 });
+        }
+        if (!memberid) {
+          return new NextResponse("Bad Request", { status: 400 });
+        }
+    
+        const server = await db.server.update({
+          where: {
+            id: serverid,
+            ProfileId: Profile.id,
+          },
+          data: {
+            members: {
+              deleteMany: {
+                id: memberid,
+                ProfileId: {
+                  not: Profile.id,
+                },
+              },
+            },
+          },
+          include: {
+            members: {
+              include: {
+                Profile: true,
+              },
+              orderBy: {
+                role: "asc",
+              },
+            },
+          },
+        });
+    
+    
+        return NextResponse.json(server);
+        
+    } catch (error) {
+        console.log("Member Id ",error);
+        
+
+        return new NextResponse("Internal Error", { status: 500 });
+        
+    }
+
+}

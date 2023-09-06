@@ -54,7 +54,6 @@ const MembersModal = () => {
   const { server } = (data as { server: TserverWithMembersWithProfiles }) || {};
 
   const OnRoleChange = async (role: MemberRole, memberId: string) => {
-    
     try {
       setisloading(memberId);
       const url = qs.stringifyUrl({
@@ -64,6 +63,26 @@ const MembersModal = () => {
         },
       });
       const resposnse = await axios.patch(url, { role });
+      router.refresh();
+
+      open("members", { server: resposnse.data });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setisloading("");
+    }
+  };
+
+  const Onkick = async (memberId: string) => {
+    try {
+      setisloading(memberId);
+      const url = qs.stringifyUrl({
+        url: `/api/member/${memberId}`,
+        query: {
+          serverId: server?.id,
+        },
+      });
+      const resposnse = await axios.delete(url);
       router.refresh();
 
       open("members", { server: resposnse.data });
@@ -136,7 +155,7 @@ const MembersModal = () => {
                           </DropdownMenuPortal>
                         </DropdownMenuSub>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => Onkick(member.id)}>
                           <Gavel className=" h-4 w-4 mr-2" />
                           Kick
                         </DropdownMenuItem>
