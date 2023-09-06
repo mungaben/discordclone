@@ -72,7 +72,9 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         )}
 
         {isModerator && (
-          <DropdownMenuItem className=" px-3 cursor-pointer text-sm py-2 ">
+          <DropdownMenuItem 
+          onClick={() => open("createChannel", { server })}
+          className=" px-3 cursor-pointer text-sm py-2 ">
             Create Channel
             <PlusCircle className=" h-4 w-4 ml-auto" />
           </DropdownMenuItem>

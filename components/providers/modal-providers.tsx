@@ -6,6 +6,7 @@ import InitialModal from "../Modals/InitialModal";
 import InviteModal from "../Modals/Invite-Modals";
 import EditServerModal from "../Modals/edit-server-model";
 import MembersModal from "../Modals/Members-Modal";
+import CreateChannelModel from "../Modals/create-channel-model";
 
 const ModalProvider = () => {
   const [isopen, setisOpen] = useState(false);
@@ -24,6 +25,7 @@ const ModalProvider = () => {
       <InviteModal/>
       <EditServerModal/>
       <MembersModal/>
+      <CreateChannelModel/>
     </div>
   );
 };
