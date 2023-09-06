@@ -32,9 +32,27 @@ const page = async ({ params }: InvitePageCodeProps) => {
     },
   });
 
+ 
+  
+
   if (existingServer) {
+    console.log("EXISTING SERVER IN PAGE INVITE MEMBER", existingServer);
     return redirect(`/Servers/${existingServer.id}`);
   }
+  const existingServerwithsameInvitecode = await db.server.findFirst({
+    where: {
+      inviteCode: params.invitecode,
+    },
+  });
+  
+  if (!existingServerwithsameInvitecode) {
+    console.log(" NO EXISTING SERVER IN PAGE WITH SUCH INVITE CODE", existingServerwithsameInvitecode);
+    
+    // Handle the case where the server does not exist
+    return redirect("/"); // Redirect to an appropriate page
+  }
+
+  
 
   // update serve by creating a new member
   const server = await db.server.update({
@@ -52,10 +70,10 @@ const page = async ({ params }: InvitePageCodeProps) => {
     },
   });
 
-  if(server){
+  if (server) {
     return redirect(`/Servers/${server.id}`);
   }
-return redirect("/")
+  return redirect("/");
 };
 
 export default page;

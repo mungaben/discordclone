@@ -15,7 +15,7 @@ const Serverslayout = async ({
   // get server with profile id
 
   console.log("PARAMS IN SERVER LAYOUT", params);
-  
+
   const profile = await currentProfile();
   if (!profile) {
     return redirectToSignIn();
@@ -31,15 +31,16 @@ const Serverslayout = async ({
     },
   });
 
+  // https://discordclone-orpin.vercel.app/invite/68b5faa8-9dae-465d-b656-dc5d35135f40
   console.log("SERVER IN SERVER LAYOUT", servers);
-  
+
   if (!servers) {
     return redirect("/");
   }
   return (
     <div className=" h-full ">
       <div className=" hidden md:flex h-full w-60 z-20 flex-col inset-y-0 fixed">
-        <ServerSideBar serverId={servers.id}/>
+        <ServerSideBar serverId={servers.id} />
       </div>
       <main className=" h-full md:pl-60">{children}</main>
     </div>
