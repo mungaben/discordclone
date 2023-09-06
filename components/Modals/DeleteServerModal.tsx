@@ -9,16 +9,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Check, Copy, RefreshCcw } from "lucide-react";
-import UseOrigin from "@/app/hooks/use-origin";
-import { useState } from "react";
-import { set } from "zod";
 import axios from "axios";
-import { on } from "events";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Button } from "../ui/button";
 
 const DeleteServerModal = () => {
   const { isOpen, Onclose, type, open, data } = usemodal();
