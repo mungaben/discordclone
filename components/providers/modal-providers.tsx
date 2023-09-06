@@ -5,6 +5,7 @@ import CreateServerModal from "../Modals/create-server-modal";
 import InitialModal from "../Modals/InitialModal";
 import InviteModal from "../Modals/Invite-Modals";
 import EditServerModal from "../Modals/edit-server-model";
+import MembersModal from "../Modals/Members-Modal";
 
 const ModalProvider = () => {
   const [isopen, setisOpen] = useState(false);
@@ -22,6 +23,7 @@ const ModalProvider = () => {
       <CreateServerModal />
       <InviteModal/>
       <EditServerModal/>
+      <MembersModal/>
     </div>
   );
 };
