@@ -61,16 +61,11 @@ export async function DELETE( req:Request,{params}:{params:{serverid:string}}){
             return NextResponse.json({message:"Server not found"}, {status:404})
         }
 
-        const server=await db.server.update({
+        const server=await db.server.delete({
             where:{
                 id:params.serverid,
                 ProfileId:profile.id
             },
-            data:{
-                inviteCode:uuid()
-
-            }
-
 
         })
 
