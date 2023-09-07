@@ -196,9 +196,9 @@ const ServerSideBar = async ({ serverId }: serverSideBarProps) => {
               role={role}
               SectionType="member"
               server={server}
-            />
+            /> 
             {members.map((member) => (
-              <ServerMember />
+              <ServerMember key={member.id} />
             ))}
           </div>
         )}
