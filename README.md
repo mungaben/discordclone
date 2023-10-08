@@ -91,6 +91,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Acknowledgments
 
 Useful links and resources I used to create this project:
+   - Youtube video [AntonioYoutube]
+   - mongodb [MongoDB](https://www.mongodb.com/)
 
 <!--
 * [YouTube Video](https://www.youtube.com/watch?v=2n3xS89TJMI)
@@ -133,7 +135,7 @@ Useful links and resources I used to create this project:
 [Twitter]: https://twitter.com/Naval29193321
 [linkedin-link]: https://www.linkedin.com/in/benson-mungai-a9674a201/
 [Website]: https://kamauportfolio.vercel.app/
-
+[AntonioYoutube]:https://www.youtube.com/watch?v=ZbX4Ok9YX94&t=29755s
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
