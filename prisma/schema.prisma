@@ -6,19 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 // profile model
 
 model Profile {
-  id     String @id @default(uuid())
+  id     String @id @default(uuid()) @map("_id")
   userId String @unique
 
   name     String?
-  email    String?  @db.Text
-  imageUrl String?  @db.Text
+  email    String?  
+  imageUrl String?  
 
 
 
@@ -37,12 +37,12 @@ model Profile {
 // modal Server
 
 model Server {
-  id      String   @id @default(uuid())
+  id      String   @id @default(uuid()) @map("_id")
   name    String
   members Member[]
  
 
-  imageUrl   String @db.Text
+  imageUrl   String 
   inviteCode String @unique
 
   Profile   Profile @relation(fields: [ProfileId], references: [id], onDelete: Cascade)
@@ -67,7 +67,7 @@ enum MemberRole {
 // model Member
 
 model Member {
-  id   String     @id @default(uuid())
+  id   String     @id @default(uuid()) @map("_id")
   role MemberRole @default(GUEST)
 
   Profile   Profile @relation(fields: [ProfileId], references: [id], onDelete: Cascade)
@@ -93,7 +93,7 @@ enum ChannelType {
 // model Channel
 
 model Channel {
-  id   String      @id @default(uuid())
+  id   String      @id @default(uuid()) @map("_id")
   name String
   type ChannelType @default(TEXT)
 
